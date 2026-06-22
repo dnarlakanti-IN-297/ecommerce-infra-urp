@@ -2,14 +2,10 @@ replicaCount: 3
 
 ingress:
   hosts:
-    - host: www.ecommerce.example.com
+    - host: ecommerce-prod.34.75.0.106.nip.io
       paths:
         - path: /
           pathType: Prefix
-  tls:
-    - secretName: ecommerce-prod-tls
-      hosts:
-        - www.ecommerce.example.com
 
 resources:
   requests:
