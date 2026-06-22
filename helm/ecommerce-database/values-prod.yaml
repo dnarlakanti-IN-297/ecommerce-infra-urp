@@ -1,6 +1,6 @@
 persistence:
   size: 20Gi
-  storageClass: pd-ssd
+  storageClass: premium-rwo
 
 resources:
   requests:
