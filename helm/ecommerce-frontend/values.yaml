@@ -31,3 +31,9 @@ resources:
 env:
   - name: BACKEND_URL
     value: "http://ecommerce-backend:5000"
+  - name: ROX_SDK_KEY
+    valueFrom:
+      secretKeyRef:
+        name: ecommerce-feature-flags
+        key: sdk-key
+        optional: true

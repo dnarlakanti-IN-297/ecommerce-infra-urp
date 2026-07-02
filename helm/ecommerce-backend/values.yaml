@@ -20,3 +20,9 @@ resources:
 env:
   - name: DATABASE_URL
     value: "postgresql://ecommerce:password@ecommerce-postgres:5432/ecommerce"
+  - name: ROX_SDK_KEY
+    valueFrom:
+      secretKeyRef:
+        name: ecommerce-feature-flags
+        key: sdk-key
+        optional: true
