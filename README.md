@@ -186,6 +186,28 @@ For production, use external secret management:
 - **External Secrets Operator**: Sync from Vault/AWS Secrets Manager
 - **Sealed Secrets**: Encrypted secrets in Git
 
+### CloudBees Unify feature management SDK key
+
+The frontend and backend deployments both read `ROX_SDK_KEY` from the same
+key (`sdk-key`) in a Secret named `ecommerce-feature-flags` (see
+`values.yaml`) — one CloudBees Unify server environment's SDK key is shared
+by every service in that Kubernetes namespace. This Secret is **not**
+managed by Helm/git — create it directly in each namespace before the
+first deploy that needs live flags:
+
+```bash
+kubectl create secret generic ecommerce-feature-flags \
+  --from-literal=sdk-key=<server SDK key for this environment, from CloudBees Unify> \
+  -n ecommerce-dev
+```
+
+Repeat for `ecommerce-prod` (and `ecommerce-staging` if used) with that
+environment's own SDK key from CloudBees Unify (Feature management > Flags
+> installation instructions) — each Unify environment has a distinct key,
+so do not reuse the dev key in prod. The env var is marked `optional: true`,
+so pods will still start and flags will fall back to their coded defaults
+if the Secret hasn't been created yet.
+
 ## 📦 Helm Commands
 
 ```bash

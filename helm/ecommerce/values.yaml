@@ -21,6 +21,12 @@ frontend:
   env:
     - name: BACKEND_URL
       value: "http://ecommerce-backend:5000"
+    - name: ROX_SDK_KEY
+      valueFrom:
+        secretKeyRef:
+          name: ecommerce-feature-flags
+          key: sdk-key
+          optional: true
 
 # Backend API (Tier 2)
 backend:
@@ -43,6 +49,12 @@ backend:
   env:
     - name: DATABASE_URL
       value: "postgresql://ecommerce:password@ecommerce-postgres:5432/ecommerce"
+    - name: ROX_SDK_KEY
+      valueFrom:
+        secretKeyRef:
+          name: ecommerce-feature-flags
+          key: sdk-key
+          optional: true
 
 # Database (Tier 3)
 database:
