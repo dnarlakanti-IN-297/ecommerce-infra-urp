@@ -163,7 +163,7 @@ ingress:
 
 ```yaml
 source:
-  repoURL: https://github.com/dnarlakanti-IN-297/ecommerce-infra.git
+  repoURL: https://github.com/dnarlakanti-IN-297/ecommerce-infra-urp.git
   targetRevision: main
   path: helm/ecommerce
 
